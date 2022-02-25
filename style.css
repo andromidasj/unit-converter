@@ -1,9 +1,94 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
+  font-size: 20px;
 }
 *, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+  /* font-size: 20px; */
+}
+
+#top-bar {
+  text-align: center;
+  font-size: 60px;
+  height: 10vh;
+}
+
+#content-container {
+  height: 90vh;
+  background-color: rgb(167, 167, 167);
+}
+
+#in-out-container {
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  background-color: rgb(167, 167, 167);
+}
+
+#unit-selector {
+  border-style: solid;
+  border-width: 2px;
+  background-color: rgb(161, 144, 144);
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+    padding: 0 200px;
+}
+
+.unit-type {
+  display: inline;
+}
+
+.unit-type.selected {
+  background-color: rgb(78, 78, 255);
+}
+
+#left-container {
+  border-style: solid;
+  border-width: 2px;
+  background-color: rgb(154, 161, 144);
+  display: inline-block;
+  height: 30em;
+  width: 40%;
+  margin-top: 2em;
+}
+
+#right-container {
+  border-style: solid;
+  border-width: 2px;
+  background-color: rgb(154, 161, 144);
+  display: inline-block;
+  height: 30em;
+  width: 40%;
+  margin-top: 2em;
+}
+
+/***********************************/
+/***************INPUT***************/
+/***********************************/
+
+.input-field {
+  width: 100%;
+  margin: auto;
+  height: 60px;
+  font-size: 40px;
+  text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+/* remove arrows*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+/* remove arrows*/
+input[type=number] {
+  -moz-appearance: textfield;
 }

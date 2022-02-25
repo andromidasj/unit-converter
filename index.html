@@ -7,9 +7,30 @@
     <title>Josh's Unit Converter</title>
     <script src="lib/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div id="top-bar">
+        <span id="title">Unit Converter</span>
+      </div>
+      <div id="content-container">
+        <ul id="unit-selector"></ul>
+        <div id="in-out-container">
+          <div id="left-container">
+            <input type="number" class="input-field">
+            <div class="left-selections-container"></div>
+          </div>
+          <div id="right-container">
+            <input type="number" class="input-field">
+            <div class="right-selections-container"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="app.js"></script>
+    <script src="units.js"></script>
   </body>
 </html>
