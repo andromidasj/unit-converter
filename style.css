@@ -71,7 +71,7 @@ html {
 /***************INPUT***************/
 /***********************************/
 
-.input-field {
+#input-field-left, #input-field-right {
   width: 100%;
   margin: auto;
   height: 60px;
@@ -91,4 +91,19 @@ input::-webkit-inner-spin-button {
 /* remove arrows*/
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/***********************************/
+/***************UNITS***************/
+/***********************************/
+.unit-subtype-left, .unit-subtype-right {
+  list-style: none;
+  text-align: center;
+  padding: 10px;
+}
+.unit-subtype-left:hover, .unit-subtype-right:hover {
+  background-color: rgb(176, 176, 176);
+}
+.unit-subtype-left.selected, .unit-subtype-right.selected {
+  background-color: rgb(188, 188, 255);
 }
