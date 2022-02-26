@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Josh's Unit Converter</title>
-    <script src="lib/jquery-3.6.0.min.js"></script>
+    <script type = "text/JavaScript" src="lib/jquery-3.6.0.min.js"></script>
+    <script type = "text/JavaScript" src="lib/underscore.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,11 +21,11 @@
         <ul id="unit-selector"></ul>
         <div id="in-out-container">
           <div id="left-container">
-            <input type="number" id="input-field-left" placeholder="0">
+            <input type="number" id="input-field-left" class="left" placeholder="0">
             <div class="left-selections-container"></div>
           </div>
           <div id="right-container">
-            <input type="number" id="input-field-right" placeholder="0">
+            <input type="number" id="input-field-right" class="right" placeholder="0">
             <div class="right-selections-container"></div>
           </div>
         </div>

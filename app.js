@@ -1,27 +1,33 @@
 $(document).ready(function(){
   let $unitSelector = $('#unit-selector');
 
-  $('#input-field-left').on('input', function(e){
+  // Consolidated two functions to a single one,
+  // and looks for class 'left' to correctly assign the
+  // left and right fields that need to be updated.
+  const updateInputField = function(e){
     let thisVal = e.target.value;
-    let inputUnit = $('.unit-subtype-left.selected').html();
-    let outputUnit  = $('.unit-subtype-right.selected').html();
-    let otherVal = calculateConversion(thisVal, inputUnit, outputUnit);
-    $('#input-field-right').val(otherVal);
-  });
+    // let sideUpdated;
+    // let sideNotUpdated;
 
-  $('#input-field-right').on('input', function(e){
-    let thisVal = e.target.value;
-    let inputUnit = $('.unit-subtype-right.selected').html();
-    let outputUnit  = $('.unit-subtype-left.selected').html();
+    if (_.contains(e.target.classList, 'left')) {
+      var sideUpdated = 'left';
+      var sideNotUpdated = 'right';
+    } else {
+      var sideUpdated = 'right';
+      var sideNotUpdated = 'left';
+    }
+
+    let inputUnit = $(`.unit-subtype-${sideUpdated}.selected`).html();
+    let outputUnit = $(`.unit-subtype-${sideNotUpdated}.selected`).html();
     let otherVal = calculateConversion(thisVal, inputUnit, outputUnit);
-    $('#input-field-left').val(otherVal);
-  });
+    $(`#input-field-${sideNotUpdated}`).val(otherVal);
+  }
 
   const calculateConversion = function(inputVal, inputUnit, outputUnit) {
     let outputVal;
     let unitType = $('.unit-type.selected').html();
-    console.log('calculating...');
-    console.log(inputVal, inputUnit, 'to', outputUnit);
+    // console.log('calculating:');
+    // console.log(inputVal, inputUnit, 'to', outputUnit);
 
     // Formula for calculating conversion based on measure_unit;
     outputVal = allUnits[unitType].subtype[inputUnit] * inputVal / allUnits[unitType].subtype[outputUnit];
@@ -48,23 +54,13 @@ $(document).ready(function(){
     let inputField1 = '#input-field-' + side1;
     let inputField2 = '#input-field-' + side2;
     let subtypeClass = '.' + e.target.classList[0];
-    // console.log(e.target.classList)
-    // console.log(subtypeClass)
-    // console.log(side)
+
     $(subtypeClass).removeClass('selected');
     $(e.target).addClass('selected');
 
-    // let inputUnit1 = '.unit-subtype-' + side1 + '.selected'
-    // let inputUnit2 = '.unit-subtype-' + side2 + '.selected';
-    // console.log('inputUnit1', inputUnit1)
-    // console.log('inputUnit2', inputUnit2)
-    let inputUnit = $('.unit-subtype-'+side2+'.selected').html();
-    let outputUnit = $('.unit-subtype-'+side1+'.selected').html();
-    console.log(inputUnit, outputUnit)
-    console.log(inputField1)
-    let outputVal;
-    // calculateConversion();
-    // console.log(calculateConversion($(inputField2).val(), inputUnit, outputUnit))
+    let outputUnit = $('.unit-subtype-' + side1 + '.selected').html();
+    let inputUnit  = $('.unit-subtype-' + side2 + '.selected').html();
+
     $(inputField1).val(calculateConversion($(inputField2).val(), inputUnit, outputUnit));
   }
 
@@ -114,6 +110,9 @@ $(document).ready(function(){
     });
   }
 
+  $('#input-field-right').on('input', updateInputField);
+  $('#input-field-left' ).on('input', updateInputField);
+
   renderUnits();
   renderUnitTypes();
 });
@@ -135,3 +134,21 @@ $(document).ready(function(){
   // $contentContainer.append($inOutContainer)
   // $inOutContainer.append($inputContainer)
   // $inOutContainer.append($outputContainer);
+
+
+  // $('#input-field-left').on('input', function(e){
+  //   let thisVal = e.target.value;
+  //   let inputUnit = $('.unit-subtype-left.selected').html();
+  //   let outputUnit  = $('.unit-subtype-right.selected').html();
+  //   let otherVal = calculateConversion(thisVal, inputUnit, outputUnit);
+  //   $('#input-field-right').val(otherVal);
+  // });
+
+  // $('#input-field-right').on('input', function(e){
+  //   let thisVal = e.target.value;
+  //   console.log('classes on input field', e.target.classList);
+  //   let inputUnit = $('.unit-subtype-right.selected').html();
+  //   let outputUnit  = $('.unit-subtype-left.selected').html();
+  //   let otherVal = calculateConversion(thisVal, inputUnit, outputUnit);
+  //   $('#input-field-left').val(otherVal);
+  // });
