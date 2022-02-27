@@ -6,8 +6,6 @@ $(document).ready(function(){
   // left and right fields that need to be updated.
   const updateInputField = function(e){
     let thisVal = e.target.value;
-    // let sideUpdated;
-    // let sideNotUpdated;
 
     if (_.contains(e.target.classList, 'left')) {
       var sideUpdated = 'left';
@@ -20,7 +18,10 @@ $(document).ready(function(){
     let inputUnit = $(`.unit-subtype-${sideUpdated}.selected`).html();
     let outputUnit = $(`.unit-subtype-${sideNotUpdated}.selected`).html();
     let otherVal = calculateConversion(thisVal, inputUnit, outputUnit);
-    $(`#input-field-${sideNotUpdated}`).val(otherVal);
+
+    $(`#input-field-${sideNotUpdated}`).val(otherVal == 0 ? '' : otherVal);
+    $(`#input-field-${sideUpdated}`).val(thisVal == 0 ? '' : thisVal);
+    // $(`#input-field-${sideUpdated}`).val(!parseFloat(thisVal) ? thisVal : parseFloat(thisVal));
   }
 
   const calculateConversion = function(inputVal, inputUnit, outputUnit) {
@@ -66,9 +67,10 @@ $(document).ready(function(){
 
   const renderUnits = function(unitType) {
     // Here we render the units on both the left
-    // and right unit list containers under the
-    // number input field
-    unitType = unitType || 'length';
+    // and right unit list containers
+    // under the number input field
+
+    unitType = unitType || 'length'; // Default to Length on refresh
     $('.left-selections-container li').remove();
     $('.right-selections-container li').remove();
 
@@ -76,14 +78,15 @@ $(document).ready(function(){
     for (let key in allUnits[unitType].subtype) {
       let $liLeft = $('<li class="unit-subtype-left"></li>');
       let $liRight = $('<li class="unit-subtype-right"></li>');
+
       $liLeft.html(key);
       $liRight.html(key);
       // Set default selected units
       if (counter === 0) {
-        $liLeft.addClass('selected');
+        $liLeft.addClass('selected'); // First item on left will be default
       }
       if (counter === 1) {
-        $liRight.addClass('selected');
+        $liRight.addClass('selected'); // Second item on right will be default
       }
       $liLeft.click(changeUnit);
       $liRight.click(changeUnit);

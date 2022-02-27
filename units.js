@@ -13,31 +13,33 @@ const allUnits = {
   weight: {
     measure_unit: 'milligram',
     subtype: {
-      pound: 1,
-      stone: 1,
-      ton: 1,
-      kilogram: 1,
-      gram: 1,
+      pound: 453592,
+      ounce: 28349.5,
+      'metric ton': 1000000000,
+      kilogram: 1000000,
+      gram: 1000,
       milligram: 1,
     },
   },
   time: {
-    measure_unit: 'second',
+    measure_unit: 'millisecond',
     subtype: {
-      second: 1,
-      minute: 1,
-      hour: 1,
-      day: 1,
-      week: 1,
-      year: 1,
+      second: 1000,
+      millisecond: 1,
+      microsecond: 0.001,
+      minute: 60000,
+      hour: 3600000,
+      day: 86400000,
+      week: 604800000,
+      year: 31557600000,
     },
   },
   temperature: {
     measure_unit: 'kelvin',
-    subtype: {
-      celsius: 1,
-      kelvin: 1,
-      fahrenheit: 1,
+    subtype: {       // NOT a linear calculation. Gotta figure out another way.
+      celsius: 1,    // 274.15,
+      kelvin: 1,     // 1,
+      fahrenheit: 1, // 255.92777778,
     },
   }
 }
