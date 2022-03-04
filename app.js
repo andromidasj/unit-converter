@@ -1,5 +1,7 @@
 $(document).ready(function(){
   let $unitSelector = $('#unit-selector');
+  let $leftInputField = $('#input-field-left');
+  let $rightInputField = $('#input-field-right');
 
   // Consolidated two functions to a single one,
   // and looks for class 'left' to correctly assign the
@@ -20,13 +22,15 @@ $(document).ready(function(){
     let otherVal = calculateConversion(thisVal, inputUnit, outputUnit);
 
     $(`#input-field-${sideNotUpdated}`).val(otherVal == 0 ? '' : otherVal);
-    $(`#input-field-${sideUpdated}`).val(thisVal == 0 ? '' : thisVal);
+    // $(`#input-field-${sideUpdated}`).val(thisVal == 0 ? '' : thisVal);
     // $(`#input-field-${sideUpdated}`).val(!parseFloat(thisVal) ? thisVal : parseFloat(thisVal));
   }
 
   const calculateConversion = function(inputVal, inputUnit, outputUnit) {
+    console.log('running calculateConv')
     let outputVal;
-    let unitType = $('.unit-type.selected').html();
+    let unitType = $('.unit-type-container.selected').attr('id');
+    console.log('unitType:', unitType);
     // console.log('calculating:');
     // console.log(inputVal, inputUnit, 'to', outputUnit);
 
@@ -38,9 +42,13 @@ $(document).ready(function(){
   }
 
   const changeUnitType = function(e) {
-    $('.unit-type').removeClass('selected');
-    $(e.target).addClass('selected');
-    renderUnits(e.target.innerHTML);
+    console.log(e.target);
+    $('.unit-type-container').removeClass('selected');
+    $(this).addClass('selected');
+    console.log('id:', $(this).attr('id'))
+    renderUnits($(this).attr('id'));
+    $leftInputField.val('');
+    $rightInputField.val('');
   }
 
   const changeUnit = function(e) {
@@ -103,18 +111,23 @@ $(document).ready(function(){
     }
     unitTypes.sort();
     unitTypes.forEach((e, i) => {
+      let $icon = $('<i></i>');
       let $listItem = $('<li class="unit-type"></li>');
+      let $container = $('<div class="unit-type-container"></div>');
       if (i === 0) {
-        $listItem.addClass('selected')
+        $container.addClass('selected')
       }
+      $icon.addClass(allUnits[e].icon);
       $listItem.html(e);
-      $listItem.click(changeUnitType);
-      $unitSelector.append($listItem);
+      $container.attr('id', e);
+      $container.click(changeUnitType);
+      $container.append($icon).append($listItem);
+      $unitSelector.append($container);
     });
   }
 
-  $('#input-field-right').on('input', updateInputField);
-  $('#input-field-left' ).on('input', updateInputField);
+  $leftInputField.on('input', updateInputField);
+  $rightInputField.on('input', updateInputField);
 
   renderUnits();
   renderUnitTypes();

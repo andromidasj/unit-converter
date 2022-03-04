@@ -1,21 +1,20 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
-  background-color: rgb(228, 228, 228);
+  background-color: #D8DBE2;
   box-sizing: border-box;
   font-size: 20px;
+  Font-family: Dejavu Sans, Arial, Verdana, sans-serif;
+  /* Font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+  font-family: 'Roboto', sans-serif; */
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
   padding: 0;
-  /* Font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; */
-  Font-family: Dejavu Sans, Arial, Verdana, sans-serif;
-  /* font-family: 'Comfortaa', cursive; */
-  /* font-family: 'Roboto', sans-serif; */
 }
 
 #top-bar {
-  /* font-family: 'Comfortaa' !important; */
+  font-family: 'Comfortaa', cursive;
   margin: 30px 0 0 0;
   text-align: center;
   font-size: 40px;
@@ -40,35 +39,36 @@ html {
   justify-content: space-evenly;
   padding: 0 200px;
 }
-
+.unit-type-container {
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  transition: all .2s ease-in-out;
+}
+.unit-type-container:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.unit-type-container.selected {
+  border-radius: 20px;
+  color: darkblue;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
 .unit-type {
   display: inline;
   text-transform: capitalize;
   font-size: 24px;
   padding: 10px;
-  cursor: pointer;
 }
-
-.unit-type.selected {
-  border-radius: 20px;
-  font-weight: 700;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-/* #left-container {
-  border-style: solid;
-  border-width: 2px;
-  background-color: rgb(154, 161, 144);
-  display: inline-block;
-  height: 30em;
-  width: 40%;
-  margin-top: 2em;
-} */
 
 #left-container, #right-container {
   /* border-style: solid;
   border-width: 2px; */
-  background-color: rgb(203, 203, 203);
+  background-color: #A9BCD0;
   display: inline-block;
   /* height: 30em; */
   /* padding-bottom: 10px; */
@@ -112,7 +112,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 /* remove arrows*/
 input[type=number] {
@@ -140,8 +139,8 @@ input[type=number] {
   cursor: pointer;
 }
 .unit-subtype-left:hover, .unit-subtype-right:hover {
-  background-color: rgb(176, 176, 176);
+  background-color: #cdcdcd;
 }
 .unit-subtype-left.selected, .unit-subtype-right.selected {
-  background-color: rgb(188, 188, 255);
+  background-color: #e0e9ea;
 }
