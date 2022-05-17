@@ -1,9 +1,10 @@
 # Unit Converter
+I wrote this simple conversion app from scratch in the first couple weeks of my software engineering immersive program. It is written using Javascript, jQuery, HTML, and CSS.
 
 ## Current Problems That Need Fixing:
 
 - [ ] Rounding errors since it’s converting twice, sometimes across metric and imperial.
-- [ ] Temperature conversion not working - new calculation needed since `0 != 0`.
+- [ ] Temperature conversion not working - new calculation needed since `0ºF` does not equal `0ºC`.
 
 ## Ideas:
 
